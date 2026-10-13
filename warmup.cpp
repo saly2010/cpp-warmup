@@ -15,6 +15,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <numeric>
 using namespace std;
 
 /**
@@ -120,8 +121,32 @@ int main() {
     //  Uses: morningWeights
     // =================================================================
 
-    cout << "=== Q1 ===\n";
+    cout << "=== Q1 ===\n";    
+    
+    for (int i = 0; i < int(morningWeights.size()); i++) {
+    vector<double> morningWeights = {
+    45.5, 80.0, 12.0, -3.0, 66.5, 20.0, 31.0, 95.0, 50.0, 18.5, 0.0, 72.0
+    };
+    double sum = accumulate(morningWeights.begin(), morningWeights.end(), 0.0);
+    cout << "The total is : " << sum << std::endl;
+    
+    int a = 0;
+    for (int i = 0; i < int(morningWeights.size()); i+= 1) {
+        if (morningWeights[i] > 0 && morningWeights[i] <= 80) {
+            a += 1;
+        }
+    }
+    cout << "The number of valid weights is: " << a << " of 12" <<endl;
 
+    int b = 0;
+    int pos = 0;
+    for (int i = 0; i < int(morningWeights.size()); i+= 1) {
+        if (morningWeights[i] > b ) {
+            b = morningWeights[i];
+            pos = i;
+        }
+    }
+    cout << "The heaviest weight is: " << b << " kg at position " << pos << endl;
 
 
 
@@ -223,7 +248,7 @@ int main() {
     return 0;
 }
 
-
+}
 // =====================================================================
 //  FUNCTIONS YOU WRITE
 //
