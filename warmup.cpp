@@ -140,7 +140,7 @@ int main() {
 
     int b = 0;
     int pos = 0;
-    for (int i = 0; i < int(morningWeights.size()); i+= 1) {
+    for (int i = 0; i < int(morningWeights.size()); i++) {
         if (morningWeights[i] > b ) {
             b = morningWeights[i];
             pos = i;
@@ -148,7 +148,21 @@ int main() {
     }
     cout << "The heaviest weight is: " << b << " kg at position " << pos << endl;
 
+    
+    int longest_valid_run = 0;
+    int current_valid_run = 0;
 
+    for (int i = 0; i < morningWeights.size(); i++) {
+        if (morningWeights[i] > 0.0 && morningWeights[i] <= 80) {
+            current_valid_run++;
+            if (current_valid_run > longest_valid_run) {
+                longest_valid_run = current_valid_run;
+            }
+        } else {
+            current_valid_run = 0;
+        }
+    }
+    cout << "Longest valid run: " << longest_valid_run << endl;
 
 
     cout << "\n";
