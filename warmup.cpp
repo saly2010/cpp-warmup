@@ -128,15 +128,15 @@ int main() {
     45.5, 80.0, 12.0, -3.0, 66.5, 20.0, 31.0, 95.0, 50.0, 18.5, 0.0, 72.0
     };
     double sum = accumulate(morningWeights.begin(), morningWeights.end(), 0.0);
-    cout << "The total is : " << sum << std::endl;
-    
+    cout << "The total is : " << sum << "\n";
+}
     int a = 0;
     for (int i = 0; i < int(morningWeights.size()); i+= 1) {
         if (morningWeights[i] > 0 && morningWeights[i] <= 80) {
             a += 1;
         }
     }
-    cout << "The number of valid weights is: " << a << " of 12" <<endl;
+    cout << "The number of valid weights is: " << a << " of 12" <<"\n";
 
     int b = 0;
     int pos = 0;
@@ -146,7 +146,7 @@ int main() {
             pos = i;
         }
     }
-    cout << "The heaviest weight is: " << b << " kg at position " << pos << endl;
+    cout << "The heaviest weight is: " << b << " kg at position " << pos << "\n";
 
     
     int longest_valid_run = 0;
@@ -162,7 +162,8 @@ int main() {
             current_valid_run = 0;
         }
     }
-    cout << "Longest valid run: " << longest_valid_run << endl;
+    cout << "Longest valid run: " << longest_valid_run << "\n";
+
 
 
     cout << "\n";
@@ -175,8 +176,63 @@ int main() {
 
     cout << "=== Q2 ===\n";
 
+    struct Delivery {
+         string farmer;
+         double kg;
+         char   grade;
+    };
 
+ vector<Delivery> logbook = {
+    {"Keza",    45.5, 'A'},
+    {"Bonu",    80.0, 'B'},
+    {"Isanda",  20.0, 'A'},
+    {"Keza",    12.0, 'C'},
+    {"Onyinye", 66.5, 'B'},
+    {"Karimi",  31.0, 'A'},
+    {"Karimi",  31.0, 'A'},
+    {"Keza",    18.5, 'B'},
+    {"Bonu",    50.0, 'C'},
+    {"Isanda",  20.0, 'A'},
+    {"Onyinye", 72.0, 'A'}
+ };
 
+   double a_total = 0, b_total = 0, c_total = 0;
+   int a_count = 0, b_count = 0, c_count = 0;
+   for (int i; i <= logbook.size(); i++) {
+       if (logbook[i].grade == 'A') {
+           a_count += 1;
+           a_total += logbook[i].kg;
+       } else if (logbook[i].grade == 'B') {
+           b_count += 1;
+           b_total += logbook[i].kg;
+       } else if (logbook[i].grade == 'C') {
+           c_count += 1;
+           c_total += logbook[i].kg;
+     }
+    }
+    double aa = (a_count > 0) ? (a_total / a_count) : 0;
+    double ab = (b_count > 0) ? (b_total / b_count) : 0;
+    double ac = (c_count > 0) ? (c_total / c_count) : 0;  
+ if (aa > ab && aa > ac) {
+       cout << "Best average: grade A"<<"\n";
+   } else if (ab > aa && ab > ac) {
+       cout << "Best average: grade B"<<"\n";
+   } else if (ac > aa && ac > ab) {
+       cout << "Best average: grade C"<<"\n";
+   }
+   
+   cout << "Grade A: " << a_count << " deliveries, " << a_total << " kg total, " << aa << " kg average"<<"\n";
+   cout << "Grade B: " << b_count << " deliveries, " << b_total << " kg total, " << ab << " kg average"<<"\n";
+   cout << "Grade C: " << c_count << " deliveries, " << c_total << " kg total, " << ac << " kg average"<<"\n";
+   
+    cout << "\n";
+
+    // =================================================================
+    //  Q3  ·  WHO IS WHO                    (see README)
+    //  Uses: logbook, and the findFarmer function you write below main
+    // =================================================================
+
+    cout << "=== Q3 ===\n";
 
 
     cout << "\n";
@@ -261,13 +317,12 @@ int main() {
 
     return 0;
 }
-
-}
-// =====================================================================
-//  FUNCTIONS YOU WRITE
-//
+   
+ // =====================================================================
+   //  FUNCTIONS YOU WRITE
 //  C++ reads a file top to bottom, so a function must be DECLARED above
-//  the place that calls it. These two are declared here at the bottom,
+
+   //  the place that calls it. These two are declared here at the bottom,
 //  which main() cannot see — so move them ABOVE main(), or leave a
 //  one-line declaration up there. Working that out is part of Q3.
 // =====================================================================
